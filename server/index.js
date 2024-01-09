@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 const AuthRoutes = require('./Routes/auth/linkedin')
+const UserRoutes = require('./Routes/user')
 
 app.use(cors());
 app.all('/*', function(req, res, next) {
@@ -27,6 +28,10 @@ mongoose.connect(DB_URL).then(()=>{
 
 //Routes middleware
 app.use('/auth',AuthRoutes)
+app.use('/user',UserRoutes)
+app.get('/',(req,res)=>{
+    res.send("Welcome to anchors collab")
+})
 
 
 app.listen(PORT,()=>{

@@ -15,6 +15,11 @@ const Influencerschema = new mongoose.Schema({
     },
     mobile:{
         type:String,
+        default:''
+    },
+    linkedinProfile:{
+        type:String,
+        default:''
     },
     referal_code:{
         type:String
@@ -30,7 +35,13 @@ const Influencerschema = new mongoose.Schema({
     refered_to:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Influencer'
-    }]
+    }],
+    created_at:{
+        type:Date
+    },
+    updated_at:{
+        type:Date
+    }
 })
 
 module.exports = new mongoose.model('Influencer',Influencerschema)

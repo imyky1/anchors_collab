@@ -57,29 +57,5 @@ router.get('/linkedin/callback', async (req, res) => {
     return res.status(500).send('Internal Server Error');
   }
 });
-router.post('/saveinfo',async(req,res)=>{
-  try{
-    const {email_verified,name,email,picture,mobile} = req.body
-    if(!email_verified){
-      return res.status(402).json("Not Verified")
-    }
-    if(!email || !name){
-      return res.status(402).json("Empty data")
-    }
-    const founduser1 = await User.findOne({ email: email })
-    if (founduser1) {
-        return res.status(422).json({ error: "This email Already Exist" })
-    }
-    const referal_code = mobile.subString(-4)
-    if (founduser1) {
-      return res.status(422).json({ error: "This email Already Exist" })
-    }
-    const info = new Influencer({name,email,picture,mobile,referal_code})
-    await info.save()
-    return res.json({ message: "saved successfully" })
-  }catch(e){
-    console.log("error saving data",e)
-    return res.status(422).json({error:"error saving user info"})
-  }
-})
+
 module.exports = router;

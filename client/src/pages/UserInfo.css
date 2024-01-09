@@ -60,6 +60,8 @@ color: #757575;
   .info_container .input_field{
     position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     width: 420px;
     height: 40px;
@@ -73,7 +75,7 @@ color: #757575;
   .userform input{
     outline: none;
     border: none;
-    
+    width: 100%;
     gap: 8px;
   }
  .info_container .footer{
@@ -93,4 +95,30 @@ color: #757575;
     gap:10px;
     background:#121212;
     color: #FFFFFF;
+  }
+  @media screen and (max-width:580px) {
+    .info_container .text h1{
+      font-family: Public Sans;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+    .info_container .text img{
+      width: 32px;
+      height: 32px;
+    }
+    .info_container .text p{
+      font-family: Public Sans;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+    .info_container .input_field{
+      width: 320px;
+      height: 40px;
+    }
   }

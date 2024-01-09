@@ -1,10 +1,41 @@
 import React,{useState} from "react";
+import {useNavigate} from 'react-router-dom'
 import './UserInfo.css'
+import axios from "axios";
 
 const UserInfo = () => {
+    const navigate = useNavigate();
     const [linkedInProfile,setLinkedinProfile] = useState("");
     const [MobileNumber,setMobileNumber] = useState("");
     const [referalCode,setreferalCode] = useState("");
+    const [error, setError] = useState("");
+
+    const saveDeatails = async() => {
+      try{
+        if (!linkedInProfile || !MobileNumber) {
+          setError("Please fill in both LinkedIn profile and Mobile number.");
+          return;
+        }
+        const response = await axios.post("http://localhost:3000/user/saveinfo",{
+          name:'yash',
+          email:'@gmail',
+          picture : '',
+          mobile : MobileNumber,
+          refered_code:referalCode,
+          linkedinProfile:linkedInProfile
+        })
+        if(response.data){
+          // console.log(response)
+          navigate('/otp-verify')
+        }else{
+          console.log(response)
+        }
+      }catch(e){
+        console.log("error saving data",e.response.data.error)
+        setError(e.response.data.error)
+      }
+        
+    }
   return (
     <div className="info_container">
       <header className="header">
@@ -27,11 +58,17 @@ const UserInfo = () => {
             <div className="input_field"><img src="/call.svg" alt="" /><input type="text" value={MobileNumber} onChange={(e)=>setMobileNumber(e.target.value)} placeholder="+919876543210" /></div>
             <div className="input_field"><img src="/referal.svg" alt="" /><input type="text" value={referalCode} onChange={(e)=>setreferalCode(e.target.value)} placeholder="Enter your referral code" /></div>
         </form>
+        {error && (
+          <div className="toast">
+            <p onClick={() => setError("")}>{error}</p>
+          </div>
+        )}
       </div>
       <footer className="footer">
-        <button>
+        <button onClick={saveDeatails}>
            Continue →
         </button>
+        
       </footer>
     </div>
   );

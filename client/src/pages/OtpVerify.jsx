@@ -20,8 +20,8 @@ const OtpVerify = () => {
             Please fill this to secure your spot
           </p>
         </div>
-        <p style={{textAlign:'center',fontWeight:'400',color:'#757575'}}>
-            OTP sent to this number  <b style={{fontWeight:'700'}}>+919876543210</b> <img src="edit.svg" alt="" /> <br /> Please enter OTP to continue
+        <p style={{ fontFamily:"Public sans",textAlign:'center',fontWeight:'400',color:'#757575'}}>
+            OTP sent to this number  <b>+919876543210</b> <img src="edit.svg" alt="" /> <br /> Please enter OTP to continue
         </p>
         <form className="userform" action="">
            <div className="input_field"><img src="/otp.svg" alt="" /><input type="text" value={otp} onChange={(e)=>setotp(e.target.value)} placeholder="OTP" /></div> 
